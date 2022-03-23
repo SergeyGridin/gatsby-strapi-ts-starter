@@ -1,0 +1,43 @@
+{
+  "name": "gatsby-strapi-ts-starte",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Starter for Gatsby with Strapi",
+  "author": "Sergey Gridin",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint 'src/**/*.{ts,tsx}'",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\""
+  },
+  "dependencies": {
+    "babel-plugin-styled-components": "^2.0.6",
+    "gatsby": "^4.10.1",
+    "gatsby-plugin-image": "^2.10.0",
+    "gatsby-plugin-manifest": "^4.10.1",
+    "gatsby-plugin-offline": "^5.10.1",
+    "gatsby-plugin-react-helmet": "^5.10.0",
+    "gatsby-plugin-react-svg": "^3.1.0",
+    "gatsby-plugin-sharp": "^4.10.1",
+    "gatsby-plugin-styled-components": "^5.10.0",
+    "gatsby-source-filesystem": "^4.10.0",
+    "gatsby-transformer-sharp": "^4.10.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-helmet": "^6.1.0",
+    "styled-components": "^5.3.3"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.21",
+    "@types/react": "^17.0.41",
+    "@types/react-dom": "^17.0.14",
+    "typescript": "^4.6.2"
+  }
+}
