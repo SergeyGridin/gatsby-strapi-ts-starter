@@ -7,7 +7,7 @@
 import React, { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import { graphql, PageProps } from 'gatsby';
-import { PreviewSiteQuery } from 'graphqlTypes';
+import { PreviewSiteQuery } from '../../../gatsby-graphql';
 import { useLocation } from '@reach/router';
 import { fetchAPI } from '@utils/api';
 import { getLocalizedPaths, PageContext } from '@utils/localize';
@@ -115,7 +115,7 @@ const PreviewPage = ({
 
   if (!cookies.strapiPreview) {
     return (
-      <Layout pageContext={pageContext} global={strapiGlobal}>
+      <Layout global={strapiGlobal}>
         <div className="mt-4 text-center">You need to turn preview mode on to view this page</div>
       </Layout>
     );
@@ -128,7 +128,7 @@ const PreviewPage = ({
   return (
     <>
       <SEO lang={locale} seo={metaData} global={strapiGlobal} />
-      <Layout pageContext={pageContext} global={strapiGlobal}>
+      <Layout global={strapiGlobal}>
         {secretPage && (
           <div>
             <Sections sections={secretPage.contentSections} />
@@ -141,18 +141,18 @@ const PreviewPage = ({
 
 export default PreviewPage;
 
-// export const query = graphql`
-//   query PreviewSite($locale: String!) {
-//     site {
-//       siteMetadata {
-//         languages {
-//           locales
-//           defaultLocale
-//         }
-//       }
-//     }
-//     strapiGlobal(locale: { eq: $locale }) {
-//       ...GlobalData
-//     }
-//   }
-// `;
+export const query = graphql`
+  query PreviewSite($locale: String!) {
+    site {
+      siteMetadata {
+        languages {
+          locales
+          defaultLocale
+        }
+      }
+    }
+    strapiGlobal(locale: { eq: $locale }) {
+      ...GlobalData
+    }
+  }
+`;

@@ -1,29 +1,29 @@
 import React, { useState } from 'react';
-import { DynamicPageQuery, StrapiPageLocalizations } from 'graphqlTypes';
-import Footer from './molecules/Footer';
+import { DynamicPageQuery, StrapiPageLocalizations } from '../../gatsby-graphql';
+// import Footer from './molecules/Footer';
 // import Navbar from './molecules/Navbar';
 // import NotificationBanner from './molecules/NotificationBanner';
 
 export interface PageContext {
   slug: string;
-  id: string;
+  id: string | number;
   locale: string;
-  locales: string[];
-  localizedPaths: { locale: string; href: string };
+  locales?: string[];
+  localizedPaths?: { locale: string; href: string };
   localizations: (StrapiPageLocalizations | null)[] | null;
   defaultLocale: string;
 }
 interface ILayoutProps {
   children: React.ReactNode;
   global: DynamicPageQuery['strapiGlobal'];
-  pageContext: PageContext;
+  // pageContext: PageContext;
 }
 
-const Layout = ({ children, global, pageContext }: ILayoutProps) => {
+const Layout = ({ children, global }: ILayoutProps) => {
   if (!global) {
     throw new Error('no global data');
   }
-  // const { navbar, footer, notificationBanner } = global;
+  // const {  footer, notificationBanner } = global;
   // const [bannerIsShown, setBannerIsShown] = useState(true);
 
   return (

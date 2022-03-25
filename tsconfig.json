@@ -33,10 +33,11 @@
     "baseUrl": "./src" /* Specify the base directory to resolve non-relative module names. */,
     "paths": {
       "@utils/*": ["utils/*"],
-      "@atoms/*": ["./components/atoms/*"],
+      "@atoms/*": ["components/atoms/*"],
       "@molecules": ["components/molecules"],
       "@organisms": ["components/organisms"],
-      "@icons": ["components/icons"]
+      "@icons": ["components/icons"],
+      "@graphql-types": ["graphql-types"]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     // "typeRoots": [],                                  /* Specify multiple folders that act like `./node_modules/@types`. */

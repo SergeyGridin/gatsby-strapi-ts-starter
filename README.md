@@ -1,11 +1,12 @@
 # gatsby-strapi-ts-starter
 
-This starter is designed for flexibility. Using it, you'll be able to manage your website content entirely in Strapi, and get a Gatsby app automatically generated. Marketing teams will be able to create pages and design their layout without help from developers.
+This starter is designed for flexibility. Using it, you'll be able to manage your website content
+entirely in Strapi, and get a Gatsby app automatically generated. Marketing teams will be able to
+create pages and design their layout without help from developers.
 
-This is a personal starter that I use in order to create projects for my clients.
-to edit content entirely in Strapi, and get Gatsby app automatically generated.
-Marketing teams will be able to create pages and desing their layout without the
-need of developers.
+This is a personal starter that I use in order to create projects for my clients. to edit content
+entirely in Strapi, and get Gatsby app automatically generated. Marketing teams will be able to
+create pages and desing their layout without the need of developers.
 
 ## Plugins
 
@@ -19,7 +20,9 @@ Ad responsive images to the website. Needs the following:
 
 ### [gatsby-plugin-manifest](https://www.gatsbyjs.com/plugins/gatsby-plugin-manifest/)
 
-The web app manifest (part of the PWA specification) enabled by this plugin allows users to add your site to their home screen on most mobile browsers. The manifest provides configuration and icons to the phone.
+The web app manifest (part of the PWA specification) enabled by this plugin allows users to add your
+site to their home screen on most mobile browsers. The manifest provides configuration and icons to
+the phone.
 
 ### [gatsby-plugin-react-helmet](https://www.gatsbyjs.com/plugins/gatsby-plugin-react-helmet/)
 
@@ -35,9 +38,12 @@ Adds svg-react-loader to gatsby webpack config.
 
 ### [gatsby-plugin-offline](https://www.gatsbyjs.com/plugins/gatsby-plugin-offline)
 
-Adds drop-in support for making a Gatsby site work offline and more resistant to bad network connections. It uses Workbox Build to create a service worker for the site and loads the service worker into the client.
+Adds drop-in support for making a Gatsby site work offline and more resistant to bad network
+connections. It uses Workbox Build to create a service worker for the site and loads the service
+worker into the client.
 
-If you’re using this plugin with gatsby-plugin-manifest (recommended) this plugin should be listed after that plugin so the manifest file can be included in the service worker.
+If you’re using this plugin with gatsby-plugin-manifest (recommended) this plugin should be listed
+after that plugin so the manifest file can be included in the service worker.
 
 ## Optional dependencies
 
@@ -52,3 +58,5 @@ If you’re using this plugin with gatsby-plugin-manifest (recommended) this plu
 - [ ] add cookie manager
 - [ ] gatsby-plugin-preload-fonts to preload all fonts
 - [ ] Modify Seo component
+- [ ] geoproximity routing
+      [read here](https://www.netlify.com/blog/2021/11/05/how-to-internationalize-sites-with-country-based-redirects/)

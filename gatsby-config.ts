@@ -79,12 +79,18 @@ const config: GatsbyConfig = {
           //   name: 'global',
           //   api: {
           //     qs: {
-          //       _locale: 'fr',
+          //       _locale: 'fr-CA',
           //     },
           //   },
           // },
         ],
         queryLimit: 1000,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-graphql-codegen`,
+      options: {
+        fileName: `./gatsby-graphql.ts`,
       },
     },
   ],

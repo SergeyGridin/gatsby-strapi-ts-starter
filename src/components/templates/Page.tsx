@@ -1,13 +1,13 @@
 import React from 'react';
 import { graphql, PageProps } from 'gatsby';
-import { DynamicPageQuery } from 'graphqlTypes';
+import { DynamicPageQuery } from '../../../gatsby-graphql';
 // import GlobalStyles from 'styles/GlobalStyles';
 // import Typography from 'styles/Typography';
 import Layout, { PageContext } from '../Layout';
 import SEO from '../SEO';
 import Sections from '../Sections';
 import HomePage from './HomePage';
-
+import { usePageContext } from 'context/pageContext';
 // Map Strapi templates to section components
 const templateComponent = {
   'templates.home-page': HomePage,
@@ -39,6 +39,9 @@ const Template = ({
 
 const DynamicPage = ({ data, pageContext }: PageProps<DynamicPageQuery, PageContext>) => {
   console.log(data);
+  // console.log('PAGE CTX: ', pageContext);
+  const ctx = usePageContext();
+  console.log(ctx);
   if (!data.strapiPage) {
     throw new Error(`No page data for ${pageContext.slug}`);
   }
@@ -55,7 +58,7 @@ const DynamicPage = ({ data, pageContext }: PageProps<DynamicPageQuery, PageCont
       {/* <GlobalStyles /> */}
       {/* <Typography /> */}
       <SEO lang={pageContext.locale} seo={metadata} global={global} />
-      <Layout global={global} pageContext={{ ...pageContext, localizations }}>
+      <Layout global={global}>
         {shouldBeTemplate ? (
           <Template templateData={template} />
         ) : (

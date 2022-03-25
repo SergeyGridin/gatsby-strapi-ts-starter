@@ -33,14 +33,14 @@ export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({ act
   actions.setWebpackConfig({
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, 'src'),
-        '@utils': path.resolve(__dirname, 'src/utils'),
-        // '@components': path.resolve(__dirname, 'src/components'),
-        '@atoms': path.resolve(__dirname, 'src/components/atoms'),
-        '@molecules': path.resolve(__dirname, 'src/components/molecules'),
-        '@organisms': path.resolve(__dirname, 'src/components/organisms'),
-        '@icons': path.resolve(__dirname, 'src/components/icons'),
+        // '@': path.resolve('src'),
+        '@utils': path.resolve('src/utils'),
+        '@atoms': path.resolve('src/components/atoms'),
+        '@molecules': path.resolve('src/components/molecules'),
+        '@organisms': path.resolve('src/components/organisms'),
+        '@icons': path.resolve('src/components/icons'),
       },
+      modules: [path.resolve('src'), 'node_modules'],
     },
   });
 };
@@ -110,6 +110,7 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions 
     const localePrefix =
       page.locale === defaultLocale || locales.includes(page.slug) ? '' : page.locale;
 
+    // create PageContext that will be used
     const context = {
       slug: page.slug,
       id: page.id,
@@ -133,27 +134,27 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions 
   // Build preview pages
   const PreviewPage = path.resolve('./src/components/templates/Preview.tsx');
 
-  // locales.forEach(locale => {
-  //   const params = {
-  //     path: `${locale}/preview/`,
-  //     component: PreviewPage,
-  //     context: {
-  //       locale,
-  //       locales,
-  //       defaultLocale,
-  //     },
-  //   };
+  locales.forEach(locale => {
+    const params = {
+      path: `${locale}/preview/`,
+      component: PreviewPage,
+      context: {
+        locale,
+        locales,
+        defaultLocale,
+      },
+    };
 
-  //   createPage(params);
-  //   // Assures onCreatePage is called since it's currently not for programmatically created pages in
-  //   // gatsby-node.js. It only works for plugin created pages and pages in the `/pages` folder.
-  //   // NOTE: If Gatsby issue #5255 is ever fixed we'll want to remove this code else onCreatePages will be called twice.
-  //   // Workaround proposed here: https://github.com/gatsbyjs/gatsby/issues/5255#issuecomment-721330474
-  //   onCreatePage({
-  //     page: params,
-  //     actions: { createPage },
-  //   });
-  // });
+    createPage(params);
+    // Assures onCreatePage is called since it's currently not for programmatically created pages in
+    // gatsby-node.js. It only works for plugin created pages and pages in the `/pages` folder.
+    // NOTE: If Gatsby issue #5255 is ever fixed we'll want to remove this code else onCreatePages will be called twice.
+    // Workaround proposed here: https://github.com/gatsbyjs/gatsby/issues/5255#issuecomment-721330474
+    onCreatePage({
+      page: params,
+      actions: { createPage },
+    });
+  });
 };
 
 const onCreatePage = async ({ page, actions }) => {

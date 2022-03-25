@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { DynamicPageQuery } from 'graphqlTypes';
+import { DynamicPageQuery } from '../../gatsby-graphql';
 
 // TODO: refactor to not include as much global
 type StrapiImage = {
@@ -11,9 +11,9 @@ type StrapiImage = {
 type SEOProps = {
   lang: string;
   seo: {
-    metaDescription: string | null;
-    metaTitle: string | null;
-    shareImage: StrapiImage | null;
+    metaDescription?: string | null;
+    metaTitle?: string | null;
+    shareImage?: StrapiImage | null;
   };
   global: DynamicPageQuery['strapiGlobal'];
 };
@@ -98,7 +98,7 @@ const SEO = ({ lang, seo, global }: SEOProps) => {
         lang,
       }}
       title={fullSeo.metaTitle || ''}
-      titleTemplate={`%s | ${fullSeo.metaTitleSuffix}`}
+      // titleTemplate={`%s | ${fullSeo.metaTitleSuffix}`}
       meta={metaTags}
       link={[
         {
