@@ -14,18 +14,17 @@ const templateComponent = {
   'templates.home-page': HomePage,
 };
 
-// Display a section individually
-const Template = ({
-  templateData,
-}: {
-  templateData: {
+interface ITemplateProps {
+  data: {
     strapi_component: keyof typeof templateComponent;
     __component?: keyof typeof templateComponent;
   };
-}) => {
+}
+
+// Display a section individually
+const Template = ({ data }: ITemplateProps) => {
   // Prepare the component
-  const TemplateComponent =
-    templateComponent[templateData.strapi_component || templateData.__component];
+  const TemplateComponent = templateComponent[data.strapi_component || data.__component];
 
   if (!TemplateComponent) {
     // No matching component for this page section
@@ -33,7 +32,8 @@ const Template = ({
   }
 
   // Display the section
-  return <TemplateComponent data={templateData} />;
+  // TODO: see if any can be fixed
+  return <TemplateComponent {...(data as any)} />;
 };
 
 const DynamicPage = ({ data }: PageProps<DynamicPageQuery>) => {
@@ -67,7 +67,7 @@ const DynamicPage = ({ data }: PageProps<DynamicPageQuery>) => {
       />
       <Layout global={global}>
         {shouldBeTemplate ? (
-          <Template templateData={template} />
+          <Template data={template} />
         ) : // we dont use content sections, thus we dont need it right now.
         // comment back in when sections are being used as per note above
         // <Sections sections={contentSections} />

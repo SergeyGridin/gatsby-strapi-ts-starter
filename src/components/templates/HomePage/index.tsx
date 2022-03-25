@@ -1,7 +1,10 @@
 import React from 'react';
-import { BaseTemplateProps } from '../shared/types';
 
-const HomePage: React.FC<BaseTemplateProps> = () => {
+interface HomeProps {
+  hello: string;
+}
+
+const HomePage: React.FC<HomeProps> = () => {
   return <div>HomePage</div>;
 };
 
