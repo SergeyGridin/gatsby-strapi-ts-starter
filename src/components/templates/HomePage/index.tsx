@@ -1,7 +1,8 @@
 import React from 'react';
+import { BaseTemplateProps } from '../shared/types';
 
-function HomePage() {
+const HomePage: React.FC<BaseTemplateProps> = () => {
   return <div>HomePage</div>;
-}
+};
 
 export default HomePage;

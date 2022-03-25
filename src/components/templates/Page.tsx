@@ -3,11 +3,12 @@ import { graphql, PageProps } from 'gatsby';
 import { DynamicPageQuery } from '../../../gatsby-graphql';
 // import GlobalStyles from 'styles/GlobalStyles';
 // import Typography from 'styles/Typography';
-import Layout, { PageContext } from '../Layout';
+import Layout from '../Layout';
 import SEO from '../SEO';
-import Sections from '../Sections';
+// import Sections from '../Sections';
 import HomePage from './HomePage';
 import { usePageContext } from 'context/pageContext';
+
 // Map Strapi templates to section components
 const templateComponent = {
   'templates.home-page': HomePage,
@@ -31,25 +32,27 @@ const Template = ({
     return null;
   }
 
-  console.log(templateData);
-
   // Display the section
   return <TemplateComponent data={templateData} />;
 };
 
-const DynamicPage = ({ data, pageContext }: PageProps<DynamicPageQuery, PageContext>) => {
-  console.log(data);
-  // console.log('PAGE CTX: ', pageContext);
-  const ctx = usePageContext();
-  console.log(ctx);
+const DynamicPage = ({ data }: PageProps<DynamicPageQuery>) => {
+  const { pageContext } = usePageContext();
+
   if (!data.strapiPage) {
     throw new Error(`No page data for ${pageContext.slug}`);
   }
-  const { contentSections, template: templateArr, metadata, localizations } = data.strapiPage;
+
+  // TODO: template and contentSections only available when pages use them,
+  // otherwse it will fail to fetch. needs refactoring. contentSection temporarily removed
+
+  const { template: templateArr, metadata } = data.strapiPage;
   const global = data.strapiGlobal;
+
   if (!metadata) {
     throw new Error('no SEO metadata');
   }
+  // template is an array. Might be fixed if used selection in Strapi
   const template = templateArr[0];
   // check if there is a template defined. Prioritize it over sections.
   const shouldBeTemplate = template ? true : false;
@@ -57,13 +60,18 @@ const DynamicPage = ({ data, pageContext }: PageProps<DynamicPageQuery, PageCont
     <>
       {/* <GlobalStyles /> */}
       {/* <Typography /> */}
-      <SEO lang={pageContext.locale} seo={metadata} global={global} />
+      <SEO
+        lang={pageContext.locale}
+        seo={metadata}
+        favicon={global?.favicon?.localFile?.publicURL}
+      />
       <Layout global={global}>
         {shouldBeTemplate ? (
           <Template templateData={template} />
-        ) : (
-          <Sections sections={contentSections} />
-        )}
+        ) : // we dont use content sections, thus we dont need it right now.
+        // comment back in when sections are being used as per note above
+        // <Sections sections={contentSections} />
+        null}
       </Layout>
     </>
   );

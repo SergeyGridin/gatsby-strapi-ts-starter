@@ -1,6 +1,5 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { DynamicPageQuery } from '../../gatsby-graphql';
 
 // TODO: refactor to not include as much global
 type StrapiImage = {
@@ -15,10 +14,11 @@ type SEOProps = {
     metaTitle?: string | null;
     shareImage?: StrapiImage | null;
   };
-  global: DynamicPageQuery['strapiGlobal'];
+  // global: DynamicPageQuery['strapiGlobal'];
+  favicon?: string | null;
 };
 
-const SEO = ({ lang, seo, global }: SEOProps) => {
+const SEO = ({ lang, seo, favicon }: SEOProps) => {
   // Merge default and page-specific SEO values
   const fullSeo = {
     ...global,
@@ -103,7 +103,8 @@ const SEO = ({ lang, seo, global }: SEOProps) => {
       link={[
         {
           rel: 'icon',
-          href: fullSeo.favicon?.localFile?.publicURL || '',
+          // favicon
+          href: favicon || '',
         },
       ]}
     />
