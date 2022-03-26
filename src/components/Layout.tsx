@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import { DynamicPageQuery, StrapiPageLocalizations } from '../../gatsby-graphql';
 // import Footer from './molecules/Footer';
 // import Navbar from './molecules/Navbar';
@@ -27,20 +28,31 @@ const Layout = ({ children, global }: ILayoutProps) => {
   // const [bannerIsShown, setBannerIsShown] = useState(true);
 
   return (
-    <div className="flex flex-col justify-between min-h-screen">
+    <StyledLayout>
       {/* Aligned to the top */}
-      <div className="flex-1">
+      <Main>
         {/* {notificationBanner && bannerIsShown && (
           <NotificationBanner data={notificationBanner} closeSelf={() => setBannerIsShown(false)} />
         )}
         <Navbar navbar={navbar} pageContext={pageContext} /> */}
         <div>{children}</div>
-      </div>
+      </Main>
       {/* Aligned to the bottom */}
       <div>FOOTER</div>
       {/* <Footer footer={footer} /> */}
-    </div>
+    </StyledLayout>
   );
 };
+
+const StyledLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+`;
+
+const Main = styled.main`
+  flex: 1 1 0%;
+`;
 
 export default Layout;
