@@ -60,6 +60,7 @@ const DynamicPage = ({ data }: PageProps<DynamicPageQuery>) => {
     <>
       {/* <GlobalStyles /> */}
       {/* <Typography /> */}
+
       <SEO
         lang={pageContext.locale}
         seo={metadata}

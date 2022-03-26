@@ -667,6 +667,7 @@ export type StrapiGlobal = Node & {
   notificationBanner?: Maybe<StrapiGlobalNotificationBanner>;
   footer?: Maybe<StrapiGlobalFooter>;
   favicon?: Maybe<StrapiGlobalFavicon>;
+  localizations?: Maybe<Array<Maybe<StrapiGlobalLocalizations>>>;
   strapiId?: Maybe<Scalars['Int']>;
 };
 
@@ -781,6 +782,11 @@ export type StrapiGlobalFaviconFormatsSmall = {
   height?: Maybe<Scalars['Int']>;
   size?: Maybe<Scalars['Float']>;
   url?: Maybe<Scalars['String']>;
+};
+
+export type StrapiGlobalLocalizations = {
+  id?: Maybe<Scalars['Int']>;
+  locale?: Maybe<Scalars['String']>;
 };
 
 export type Query = {
@@ -1079,6 +1085,7 @@ export type QueryStrapiGlobalArgs = {
   notificationBanner?: InputMaybe<StrapiGlobalNotificationBannerFilterInput>;
   footer?: InputMaybe<StrapiGlobalFooterFilterInput>;
   favicon?: InputMaybe<StrapiGlobalFaviconFilterInput>;
+  localizations?: InputMaybe<StrapiGlobalLocalizationsFilterListInput>;
   strapiId?: InputMaybe<IntQueryOperatorInput>;
 };
 
@@ -3475,6 +3482,15 @@ export type StrapiGlobalFaviconFormatsSmallFilterInput = {
   url?: InputMaybe<StringQueryOperatorInput>;
 };
 
+export type StrapiGlobalLocalizationsFilterListInput = {
+  elemMatch?: InputMaybe<StrapiGlobalLocalizationsFilterInput>;
+};
+
+export type StrapiGlobalLocalizationsFilterInput = {
+  id?: InputMaybe<IntQueryOperatorInput>;
+  locale?: InputMaybe<StringQueryOperatorInput>;
+};
+
 export type StrapiGlobalConnection = {
   totalCount: Scalars['Int'];
   edges: Array<StrapiGlobalEdge>;
@@ -3717,6 +3733,9 @@ export type StrapiGlobalFieldsEnum =
   | 'favicon___localFile___internal___mediaType'
   | 'favicon___localFile___internal___owner'
   | 'favicon___localFile___internal___type'
+  | 'localizations'
+  | 'localizations___id'
+  | 'localizations___locale'
   | 'strapiId';
 
 export type StrapiGlobalGroupConnection = {
@@ -3771,6 +3790,7 @@ export type StrapiGlobalFilterInput = {
   notificationBanner?: InputMaybe<StrapiGlobalNotificationBannerFilterInput>;
   footer?: InputMaybe<StrapiGlobalFooterFilterInput>;
   favicon?: InputMaybe<StrapiGlobalFaviconFilterInput>;
+  localizations?: InputMaybe<StrapiGlobalLocalizationsFilterListInput>;
   strapiId?: InputMaybe<IntQueryOperatorInput>;
 };
 
@@ -3788,13 +3808,6 @@ export type DynamicPageQueryVariables = Exact<{
 
 
 export type DynamicPageQuery = { strapiGlobal?: { id: string, favicon?: { localFile?: { publicURL?: string | null } | null } | null, footer?: { id?: number | null, smallText?: string | null } | null, notificationBanner?: { id?: number | null, text?: string | null, type?: string | null } | null } | null, strapiPage?: { slug?: string | null, shortName?: string | null, template?: any | null, metadata?: { metaTitle?: string | null, metaDescription?: string | null } | null, localizations?: Array<{ id?: number | null, locale?: string | null } | null> | null } | null };
-
-export type PreviewSiteQueryVariables = Exact<{
-  locale: Scalars['String'];
-}>;
-
-
-export type PreviewSiteQuery = { site?: { siteMetadata?: { languages?: { locales?: Array<string | null> | null, defaultLocale?: string | null } | null } | null } | null, strapiGlobal?: { id: string, favicon?: { localFile?: { publicURL?: string | null } | null } | null, footer?: { id?: number | null, smallText?: string | null } | null, notificationBanner?: { id?: number | null, text?: string | null, type?: string | null } | null } | null };
 
 export type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 

@@ -25,7 +25,7 @@ const config: GatsbyConfig = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: path.resolve(`./src/images`),
+        path: path.resolve(`./src/assets/images`),
       },
     },
     `gatsby-transformer-sharp`,

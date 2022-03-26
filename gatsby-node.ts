@@ -72,8 +72,6 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions 
     }
   `);
 
-  console.log(locales);
-
   // get all strapi pages for each locale with a published status
   const localePages = locales.map(async locale => {
     const { data } = (await graphql(
@@ -91,14 +89,10 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions 
       { locale: locale }
     )) as any;
 
-    console.log(data);
-
     return data.allStrapiPage.nodes;
   });
 
   const pages = await (await Promise.all(localePages)).flat();
-
-  console.log('PAGES: ', pages);
 
   const PageTemplate = path.resolve('./src/components/templates/Page.tsx');
 
@@ -131,30 +125,30 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions 
     });
   });
 
-  // Build preview pages
-  const PreviewPage = path.resolve('./src/components/templates/Preview.tsx');
+  // TODO: Build preview pages. make sure they are not in the sitemap
+  // const PreviewPage = path.resolve('./src/components/templates/Preview.tsx');
 
-  locales.forEach(locale => {
-    const params = {
-      path: `${locale}/preview/`,
-      component: PreviewPage,
-      context: {
-        locale,
-        locales,
-        defaultLocale,
-      },
-    };
+  // locales.forEach(locale => {
+  //   const params = {
+  //     path: `${locale}/preview/`,
+  //     component: PreviewPage,
+  //     context: {
+  //       locale,
+  //       locales,
+  //       defaultLocale,
+  //     },
+  //   };
 
-    createPage(params);
-    // Assures onCreatePage is called since it's currently not for programmatically created pages in
-    // gatsby-node.js. It only works for plugin created pages and pages in the `/pages` folder.
-    // NOTE: If Gatsby issue #5255 is ever fixed we'll want to remove this code else onCreatePages will be called twice.
-    // Workaround proposed here: https://github.com/gatsbyjs/gatsby/issues/5255#issuecomment-721330474
-    onCreatePage({
-      page: params,
-      actions: { createPage },
-    });
-  });
+  //   createPage(params);
+  //   // Assures onCreatePage is called since it's currently not for programmatically created pages in
+  //   // gatsby-node.js. It only works for plugin created pages and pages in the `/pages` folder.
+  //   // NOTE: If Gatsby issue #5255 is ever fixed we'll want to remove this code else onCreatePages will be called twice.
+  //   // Workaround proposed here: https://github.com/gatsbyjs/gatsby/issues/5255#issuecomment-721330474
+  //   onCreatePage({
+  //     page: params,
+  //     actions: { createPage },
+  //   });
+  // });
 };
 
 const onCreatePage = async ({ page, actions }) => {

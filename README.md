@@ -50,6 +50,34 @@ after that plugin so the manifest file can be included in the service worker.
 - Tailwind [here is how to install](https://tailwindcss.com/docs/guides/gatsby)
 - GSAP
 
+## Project Structure
+
+### [gatsby-node](gatsby-node.ts)
+
+[docs](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/) This file rins once when
+we build the site. Inside of this file we extend WebPack config to fit our project setup for easier
+imports.
+
+Main part is `createPages` function where we do the following:
+
+- query all locales from strapi api. We will use them to query each page specifically later in the
+  file.
+- query all pages with locales that we got above.
+- grab main page template
+- loop through pages that we got for the query and use `createPage` api to dynamically create pages
+  with our `PageTemplate` passing in context that we will use later to store in ReactContext.
+- Build preview pages using `onCreatePage` api. These pages will be generated to preview changes
+  before pushing them to production. We do not want these pages to be indexed by google. They will
+  only be accessible by providing secret key.
+
+### [gatsby-config](gatsby-config.ts)
+
+Configuration file.
+
+### [gatsby-browser](gatsby-config.ts)
+
+mimic same in gatsby-ssr
+
 ## TODO
 
 - [ ] add google analytics
