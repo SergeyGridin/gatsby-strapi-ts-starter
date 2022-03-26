@@ -1,0 +1,1 @@
+# Gatsby starter with strapi
